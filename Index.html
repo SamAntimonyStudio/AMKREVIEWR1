@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMK — Your review pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF; --black:#292929; --green:#37FF00; --forrest:#182B0E;
+    --charcoal:#313131; --grey:#E0E0E0; --midgrey:#8a8a8a;
+    --sans:"Helvetica Neue",Helvetica,Arial,"Segoe UI",sans-serif;
+    --serif:"Vollkorn",Georgia,serif;
+    --maxw:820px; --pad:clamp(22px,5vw,56px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--white);color:var(--black);font-family:var(--sans);font-weight:300;line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+  h1,h2,h3{font-weight:600;letter-spacing:-0.02em;line-height:1.06}
+  em{font-family:var(--serif);font-style:italic}
+  strong{font-weight:600}
+  .tagline{font-family:var(--serif);font-style:italic;color:var(--midgrey);font-size:15px}
+  .mark{width:16px;height:16px;background:var(--green);border-radius:50%;display:inline-block;vertical-align:middle}
+
+  header{padding:clamp(38px,7vw,70px) 0 8px}
+  .topbar{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--midgrey);letter-spacing:.02em;margin-bottom:2.4em}
+  .eyebrow{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--midgrey);display:block;margin-bottom:.9em}
+  h1{font-size:clamp(38px,8vw,76px);letter-spacing:-0.04em;margin-bottom:.5em}
+  .intro{font-size:clamp(18px,2.4vw,22px);font-weight:300;max-width:54ch;line-height:1.4;margin-bottom:.4em}
+
+  .task{border-top:1px solid var(--grey);padding:clamp(34px,5vw,52px) 0}
+  .task .tnum{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;border:1px solid var(--black);border-radius:999px;padding:3px 13px;margin-bottom:1.3em}
+  .task h2{font-size:clamp(26px,4vw,40px);margin-bottom:.5em}
+  .task .what{font-size:17px;max-width:60ch;margin-bottom:1.6em}
+  .task .what b{font-weight:600}
+
+  .how{background:#f6f6f6;border-radius:6px;padding:24px 26px;margin-bottom:1.6em}
+  .how h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--midgrey);margin-bottom:1em}
+  ol.steps{list-style:none;counter-reset:s}
+  ol.steps li{counter-increment:s;position:relative;padding:7px 0 7px 34px;font-size:16px;border-bottom:1px solid #e6e6e6}
+  ol.steps li:last-child{border-bottom:0}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:7px;width:22px;height:22px;background:var(--green);color:var(--forrest);border-radius:50%;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+  .labels{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--grey);border:1px solid var(--grey);border-radius:6px;overflow:hidden;margin-bottom:1.6em}
+  .labels>div{background:var(--white);padding:14px 16px;font-size:14.5px}
+  .labels b{display:block;font-weight:600;margin-bottom:2px}
+  .labels span{color:var(--midgrey)}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:var(--black);text-decoration:none;font-weight:600;font-size:16px;border-radius:999px;padding:13px 26px;transition:transform .12s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.dark{background:var(--charcoal);color:#fff}
+
+  .three{background:var(--charcoal);color:#fff;border-radius:8px;padding:clamp(28px,4vw,40px);margin:8px 0 0}
+  .three h2{color:#fff;font-size:clamp(22px,3vw,30px);margin-bottom:.5em}
+  .three p{color:#cfcfcf;max-width:56ch;margin-bottom:1.3em}
+  .three ol{list-style:none;counter-reset:t}
+  .three li{counter-increment:t;position:relative;padding:11px 0 11px 40px;border-bottom:1px solid #444;font-size:17px}
+  .three li:last-child{border-bottom:0}
+  .three li::before{content:"0"counter(t);position:absolute;left:0;top:11px;color:var(--green);font-weight:600;font-size:14px}
+  .three .small{color:#9a9a9a;font-size:14px;margin-top:1.2em;margin-bottom:0}
+
+  .deadline{border:2px solid var(--green);border-radius:8px;padding:clamp(26px,4vw,38px);margin:34px 0 0;background:#f3fff0}
+  .deadline .when{font-size:clamp(22px,3.4vw,32px);font-weight:600;letter-spacing:-0.02em;margin-bottom:.4em}
+  .deadline .when b{background:var(--green);padding:0 .15em}
+  .deadline p{max-width:58ch;font-size:16px;margin:0}
+
+  footer{margin-top:60px;background:var(--forrest);color:#bcd6b4;padding:48px var(--pad)}
+  footer .big{font-family:var(--sans);font-weight:600;color:var(--green);font-size:clamp(24px,5vw,40px);letter-spacing:-0.03em;line-height:1.05;margin-bottom:.5em}
+  footer p{max-width:50ch;font-size:14px}
+
+  @media(max-width:620px){.labels{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <span><span class="mark"></span>&nbsp; AARON McKENZIE</span>
+      <span>From Antimony Studio</span>
+    </div>
+    <span class="eyebrow">For Aaron, two things to look at</span>
+    <h1>Your review pack.</h1>
+    <p class="intro">Two pieces are ready for your eyes: the words for your website, and the plan for the launch and the year after it.</p>
+    <p class="intro">Go through both, and we can start building the site and setting up the content and channels. Here is exactly what to do, and it should not take long.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- TASK 1 -->
+  <section class="task">
+    <span class="tnum">TASK 01</span>
+    <h2>Read and sign off your website copy</h2>
+    <p class="what"><b>What it is:</b> every line of copy for the site, laid out in your brand. No design, no tech, just the words people will read.</p>
+
+    <div class="how">
+      <h3>How to review it</h3>
+      <ol class="steps">
+        <li>Read it top to bottom. Each line has a tag telling you what we need.</li>
+        <li>Anything you want to change, click the text and type over it.</li>
+        <li>Where there is a decision, you will see options. Pick the one that sounds like you.</li>
+        <li>Where only you can write it, there is a box. Fill it in.</li>
+        <li>When you are done, hit <b>Export decisions</b> at the top and send the file back to us.</li>
+      </ol>
+    </div>
+
+    <div class="labels">
+      <div><b>Locked</b><span>Already agreed. Confirm it or tweak it.</span></div>
+      <div><b>Needs sign-off</b><span>Read it and approve.</span></div>
+      <div><b>Choose an option</b><span>Pick one.</span></div>
+      <div><b>Over to you</b><span>A line only you can write.</span></div>
+    </div>
+
+    <a class="btn" href="https://samantimonystudio.github.io/AMKWEBSITECOPY/" target="_blank" rel="noopener">Open the website copy &rarr;</a>
+  </section>
+
+  <!-- TASK 2 -->
+  <section class="task">
+    <span class="tnum">TASK 02</span>
+    <h2>Read and approve the content strategy</h2>
+    <p class="what"><b>What it is:</b> the plan for the launch and the first eighteen months. Your two worlds, art and commercial, kept separate. How we find collectors, what we post, and where.</p>
+
+    <div class="how">
+      <h3>How to review it</h3>
+      <ol class="steps">
+        <li>Read it through. You are not editing this one, just taking it in.</li>
+        <li>Reply with a simple yes, or flag anything that does not feel like you. The voice and the pillars are the parts worth a close look.</li>
+        <li>Then give us the three decisions below. They are the only things holding the rest up.</li>
+      </ol>
+    </div>
+
+    <a class="btn dark" href="https://samantimonystudio.github.io/AMKCONTENTSTRATEGY/" target="_blank" rel="noopener">Open the content strategy &rarr;</a>
+  </section>
+
+  <!-- THREE DECISIONS -->
+  <section class="three">
+    <h2>Three decisions unlock everything else</h2>
+    <p>These are the only things we genuinely cannot move without. Rough is completely fine, we just need a direction to build the calendar around.</p>
+    <ol>
+      <li><b>Your first capsule date.</b> Even a rough month sets the whole runway.</li>
+      <li><b>What is in the first capsule.</b> The works, and the thread that ties them together.</li>
+      <li><b>How often you want to drop.</b> Monthly or quarterly, whichever you can produce.</li>
+    </ol>
+    <p class="small">Everything else in the plan can flex around these. These three cannot.</p>
+  </section>
+
+  <!-- DEADLINE -->
+  <section class="deadline">
+    <div class="when">Can you get back to us by <b>5pm AEST, Monday 29 June</b>?</div>
+    <p>Close of business Monday. Once we have your sign-off on both, plus those three decisions, we start the site build and stand up the content and channel setup the same week. If anything is unclear or you want to talk it through first, just call.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="big">We focus specifically<br>on nothing in particular.</div>
+    <p>Aaron McKenzie &times; Antimony Studio, 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>
